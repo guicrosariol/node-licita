@@ -1,5 +1,5 @@
 import { left, right, type Either } from "../../../core/either";
-import { Hasher } from "../../../core/hash";
+import { Hasher } from "../../../core/hasher";
 import { User } from "../../entities/user";
 import type { UserRepository } from "../repositories/user-repository";
 import { AlreadyExistError } from "./errors/already-exist-error";

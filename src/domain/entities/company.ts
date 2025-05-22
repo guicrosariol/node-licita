@@ -1,4 +1,4 @@
-import { UUID } from "../../core/uuid";
+import { Entity } from "../../core/entities/entity";
 
 export interface CompanyProps {
   name: string;
@@ -6,21 +6,9 @@ export interface CompanyProps {
   email: string;
 }
 
-export class Company {
-  private id: string;
-  private name: string;
-  private cnpj: string;
-  private email: string;
-
-  private constructor(props: CompanyProps) {
-    this.id = UUID.create();
-    this.name = props.name;
-    this.cnpj = props.cnpj;
-    this.email = props.email;
-  };
-
-  static create(props: CompanyProps) {
-    return new Company(props);
+export class Company extends Entity<CompanyProps> {
+  static create(id: string, props: CompanyProps) {
+    return new Company(props, id);
   };
 }
 

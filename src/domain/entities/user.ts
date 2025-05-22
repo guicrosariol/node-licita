@@ -1,3 +1,5 @@
+import { Entity } from "../../core/entities/entity";
+
 export interface UserProps {
   name: string;
   cnpj: string;
@@ -5,20 +7,8 @@ export interface UserProps {
   passwordHash: string;
 }
 
-export class User {
-  private name: string;
-  private cnpj: string;
-  private email: string;
-  private passwordHash: string;
-
-  private constructor(props: UserProps) {
-    this.name = props.name;
-    this.cnpj = props.cnpj;
-    this.email = props.email;
-    this.passwordHash = props.passwordHash;
-  };
-
-  static create(props: UserProps) {
-    return new User(props)
+export class User extends Entity<UserProps> {
+  static create(props: UserProps, id?: string,) {
+    return new User(props, id)
   };
 }
