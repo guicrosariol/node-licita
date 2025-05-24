@@ -4,6 +4,7 @@ import type { BidRepository } from "../repositories/bid-repository"
 import { AlreadyExistError } from "./errors/already-exist-error"
 
 interface CreateBidRequest {
+  id?: string,
   pncpId: string
 }
 
@@ -15,6 +16,7 @@ export class CreateBidUseCase {
   ) { }
 
   async execute({
+    id,
     pncpId
   }: CreateBidRequest): Promise<CreateBidResponse> {
     const bidAlreadyExist = await this.bidRepository.findByPncpId(pncpId)
@@ -23,6 +25,7 @@ export class CreateBidUseCase {
     }
 
     const bidToCreate = Bid.create({
+      id,
       pncpId
     })
 

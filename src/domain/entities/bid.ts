@@ -1,11 +1,19 @@
 import { Entity } from "../../core/entities/entity";
 
 interface BidProps {
+  id?: string
   pncpId: string
+  isManaged?: boolean
 }
 
 export class Bid extends Entity<BidProps> {
-  static create(props: BidProps) {
-    return new Bid(props)
+  markAsManaged() {
+    this.props.isManaged = true;
+  }
+
+  static create(props: BidProps, id?: string) {
+    return new Bid({
+      ...props, isManaged: props.isManaged ?? false
+    })
   }
 }
