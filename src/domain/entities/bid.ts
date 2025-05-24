@@ -6,6 +6,6 @@ interface BidProps {
 
 export class Bid extends Entity<BidProps> {
   static create(props: BidProps) {
-    new Bid(props)
+    return new Bid(props)
   }
 }

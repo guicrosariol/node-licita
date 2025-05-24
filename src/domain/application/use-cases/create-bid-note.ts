@@ -1,6 +1,7 @@
-import { right, type Either } from "../../../core/either"
+import { left, right, type Either } from "../../../core/either"
 import { BidNote } from "../../entities/bid-note"
 import type { BidRepository } from "../repositories/bid-repository"
+import { NotFoundError } from "./errors/not-found-error"
 
 interface CreateBidNoteRequest {
   bidId: string
@@ -8,7 +9,7 @@ interface CreateBidNoteRequest {
   content: string
 }
 
-type CreateBidNoteResponse = Either<null, BidNote>
+type CreateBidNoteResponse = Either<NotFoundError, BidNote>
 
 export class CreateBidNoteUseCase {
   constructor(
@@ -20,6 +21,11 @@ export class CreateBidNoteUseCase {
     ownerId,
     content
   }: CreateBidNoteRequest): Promise<CreateBidNoteResponse> {
+    const doesBidExist = await this.bidRepository.findByPncpId(bidId)
+    if (!doesBidExist) {
+      return left(new NotFoundError())
+    }
+
     const bidNoteToCreate = BidNote.create({
       bidId,
       content,
