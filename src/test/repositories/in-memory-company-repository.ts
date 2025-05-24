@@ -5,6 +5,16 @@ import type { Company } from "../../domain/entities/company";
 export class InMemoryCompanyRepository implements CompanyRepository {
   private items: Company[] = []
 
+  async findById(companyId: string): Promise<null | Company> {
+    const company = this.items.find((company) => company.id.toString() === companyId)
+
+    if (!company) {
+      return null
+    }
+
+    return company
+  }
+
   async create(company: Company): Promise<Company> {
     this.items.push(company)
     return company

@@ -1,11 +1,12 @@
 import { left, right, type Either } from "../../../core/either"
 import { BidNote } from "../../entities/bid-note"
 import type { BidRepository } from "../repositories/bid-repository"
+import { AlreadyExistError } from "./errors/already-exist-error"
 import { NotFoundError } from "./errors/not-found-error"
 
 interface CreateBidNoteRequest {
   bidId: string
-  ownerId: string
+  companyId: string
   content: string
 }
 
@@ -18,18 +19,18 @@ export class CreateBidNoteUseCase {
 
   async execute({
     bidId,
-    ownerId,
+    companyId,
     content
   }: CreateBidNoteRequest): Promise<CreateBidNoteResponse> {
-    const doesBidExist = await this.bidRepository.findByPncpId(bidId)
+    const doesBidExist = await this.bidRepository.findById(bidId)
     if (!doesBidExist) {
-      return left(new NotFoundError())
+      return left(new AlreadyExistError())
     }
 
     const bidNoteToCreate = BidNote.create({
       bidId,
       content,
-      ownerId
+      companyId
     })
 
     const createdBidNote = await this.bidRepository.createNote(bidNoteToCreate)

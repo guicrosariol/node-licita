@@ -11,6 +11,7 @@ export class CreateCompanyUseCase {
   ) { }
 
   async execute({
+    id,
     name,
     email,
     cnpj
@@ -28,7 +29,7 @@ export class CreateCompanyUseCase {
       name,
       email,
       cnpj,
-    });
+    }, id);
 
     const createdCompany = await this.companyRepository.create(companyToCreate);
 

@@ -10,8 +10,8 @@ export class InMemoryBidRepository implements BidRepository {
     return bid
   };
 
-  async findByPncpId(pncpId: string): Promise<null | Bid> {
-    const bid = this.items.find((bid) => bid.props.pncpId == pncpId)
+  async findByPncpAndCompany(pncpId: string, companyId: string): Promise<null | Bid> {
+    const bid = this.items.find((bid) => bid.props.pncpId == pncpId && bid.props.companyId == companyId)
 
     if (!bid) {
       return null

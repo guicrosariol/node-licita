@@ -1,6 +1,7 @@
 import { Entity } from "../../core/entities/entity";
 
 export interface CompanyProps {
+  id?: string;
   name: string;
   cnpj: string;
   email: string;
