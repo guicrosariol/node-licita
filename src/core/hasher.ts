@@ -1,7 +1,3 @@
-import { hash } from "bcryptjs";
-
-export class Hasher {
-  static async hash(value: string, saltRounds: number): Promise<string> {
-    return await hash(value, saltRounds);
-  }
+export interface Hasher {
+  hash(payload: string, saltOrRounds: number): Promise<string>;
 }

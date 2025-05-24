@@ -1,5 +1,5 @@
 import { left, right, type Either } from "../../../core/either";
-import { Hasher } from "../../../core/hasher";
+import type { Hasher } from "../../../core/hasher";
 import { User } from "../../entities/user";
 import type { UserRepository } from "../repositories/user-repository";
 import { AlreadyExistError } from "./errors/already-exist-error";
@@ -15,6 +15,7 @@ type CreateUserResponse = Either<AlreadyExistError, User>
 
 export class CreateUserUseCase {
   constructor(
+    private hasher: Hasher,
     private userRepository: UserRepository
   ) { };
 
@@ -33,7 +34,7 @@ export class CreateUserUseCase {
       return left(new AlreadyExistError())
     }
 
-    const passwordHash = await Hasher.hash(password, 6);
+    const passwordHash = await this.hasher.hash(password, 6);
 
     const userToCreate = User.create({
       name,
