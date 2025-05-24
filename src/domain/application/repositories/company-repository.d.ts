@@ -4,5 +4,5 @@ import type { FindByEmailAndCnpjParams } from './types/company'
 
 export interface CompanyRepository {
   create(company: Company): Promise<Company>;
-  findByEmailAndCnpj(params: FindByEmailAndCnpjParams): Promise<Company | null>;
+  findByEmailOrCnpj(params: FindByEmailAndCnpjParams): Promise<Company | null>;
 }

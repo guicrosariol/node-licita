@@ -5,7 +5,7 @@ import { AlreadyExistError } from '../domain/application/use-cases/errors/alread
 
 let sut: ReturnType<typeof makeCreateUserUseCase>
 
-describe('Create User Use Case', () => {
+describe('Create user user case', () => {
   beforeEach(() => {
     sut = makeCreateUserUseCase()
   })

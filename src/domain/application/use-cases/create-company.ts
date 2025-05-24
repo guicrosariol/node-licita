@@ -15,7 +15,7 @@ export class CreateCompanyUseCase {
     email,
     cnpj
   }: CompanyProps): Promise<CreateCompanyResponse> {
-    const companyAlreadyExist = await this.companyRepository.findByEmailAndCnpj({
+    const companyAlreadyExist = await this.companyRepository.findByEmailOrCnpj({
       email,
       cnpj
     });

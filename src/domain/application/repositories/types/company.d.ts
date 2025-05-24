@@ -1,4 +1,4 @@
-export interface FindByEmailAndCnpjParams {
+export interface FindByEmailOrCnpjParams {
   email: string,
   cnpj: string
 }
