@@ -11,7 +11,7 @@ interface CreateUserRequest {
   password: string
 }
 
-type CreateUserUseCaseResponse = Either<AlreadyExistError, User>
+type CreateUserResponse = Either<AlreadyExistError, User>
 
 export class CreateUserUseCase {
   constructor(
@@ -23,7 +23,7 @@ export class CreateUserUseCase {
     email,
     cnpj,
     password
-  }: CreateUserRequest): Promise<CreateUserUseCaseResponse> {
+  }: CreateUserRequest): Promise<CreateUserResponse> {
     const userAlreadyExists = await this.userRepository.findByEmailAndCnpj({
       email,
       cnpj

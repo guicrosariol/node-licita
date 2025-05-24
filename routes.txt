@@ -1,0 +1,9 @@
+Sem filtros
+https://pncp.gov.br/api/search/?tipos_documento=edital&ordenacao=-data&pagina=1&tam_pagina=10&status=recebendo_proposta
+
+Com filtro por ufs: &ufs=AC%7CAM%7CAL
+https://pncp.gov.br/api/search/?tipos_documento=edital&ordenacao=-data&pagina=1&tam_pagina=10&status=recebendo_proposta&ufs=AC%7CAM%7CAL
+
+Com filtro por unidades: &unidades=2432622%7C2445321
+https://pncp.gov.br/api/search/?tipos_documento=edital&ordenacao=-data&pagina=1&tam_pagina=10&status=recebendo_proposta&orgaos=24901&unidades=2432622%7C2445321&esferas=D%7CE&poderes=E%7CJ&ufs=AC%7CAM%7CAL&municipios=5324%7C5325&modalidades=4%7C5&tipos=3%7C2&fontes_orcamentarias=2
+

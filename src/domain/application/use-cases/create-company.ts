@@ -1,10 +1,9 @@
 import { left, right, type Either } from "../../../core/either";
 import { Company, CompanyProps } from "../../entities/company";
 import type { CompanyRepository } from "../repositories/company-repository";
-
 import { AlreadyExistError } from "./errors/already-exist-error";
 
-type CreateCompanyUseCaseResponse = Either<AlreadyExistError, Company>
+type CreateCompanyResponse = Either<AlreadyExistError, Company>
 
 export class CreateCompanyUseCase {
   constructor(
@@ -15,7 +14,7 @@ export class CreateCompanyUseCase {
     name,
     email,
     cnpj
-  }: CompanyProps): Promise<CreateCompanyUseCaseResponse> {
+  }: CompanyProps): Promise<CreateCompanyResponse> {
     const companyAlreadyExist = await this.companyRepository.findByEmailAndCnpj({
       email,
       cnpj

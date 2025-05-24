@@ -7,7 +7,7 @@ export interface CompanyProps {
 }
 
 export class Company extends Entity<CompanyProps> {
-  static create(id: string, props: CompanyProps) {
+  static create(props: CompanyProps, id?: string,) {
     return new Company(props, id);
   };
 }
