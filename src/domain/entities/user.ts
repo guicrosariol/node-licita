@@ -2,7 +2,6 @@ import { Entity } from "../../core/entities/entity";
 
 export interface UserProps {
   name: string;
-  cnpj: string;
   email: string;
   passwordHash: string;
 }

@@ -14,7 +14,6 @@ describe('Create User Use Case', () => {
     const result = await sut.execute({
       name: 'John Doe',
       email: 'john@example.com',
-      cnpj: '12345678901234',
       password: '123456'
     })
 
@@ -22,18 +21,16 @@ describe('Create User Use Case', () => {
     expect(result.value).toBeInstanceOf(User)
   })
 
-  it('should not be able to create a user with same email and cnpj', async () => {
+  it('should not be able to create a user with same email', async () => {
     await sut.execute({
       name: 'John Doe',
       email: 'john@example.com',
-      cnpj: '12345678901234',
       password: '123456'
     })
 
     const result = await sut.execute({
       name: 'John Doe',
       email: 'john@example.com',
-      cnpj: '12345678901234',
       password: '123456'
     })
 

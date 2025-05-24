@@ -1,4 +1,3 @@
-import type { findByEmailAndCnpjParams } from "../../domain/application/repositories/types/user";
 import type { UserRepository } from "../../domain/application/repositories/user-repository";
 import type { User } from "../../domain/entities/user";
 
@@ -10,9 +9,9 @@ export class InMemoryUserRepository implements UserRepository {
     return user
   }
 
-  async findByEmailAndCnpj({ email, cnpj }: findByEmailAndCnpjParams): Promise<User | null> {
+  async findByEmail(email: string): Promise<User | null> {
     const user = this.items.find(
-      (user) => user.props.email === email && user.props.cnpj === cnpj
+      (user) => user.props.email === email
     )
 
     if (!user) {
