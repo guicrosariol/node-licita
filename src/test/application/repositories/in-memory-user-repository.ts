@@ -3,15 +3,15 @@ import type { User } from "../../../domain/entities/user"
 
 
 export class InMemoryUserRepository implements UserRepository {
-  public items: User[] = []
+  public users: User[] = []
 
   async create(user: User): Promise<User> {
-    this.items.push(user)
+    this.users.push(user)
     return user
   }
 
   async findByEmail(email: string): Promise<User | null> {
-    const user = this.items.find(
+    const user = this.users.find(
       (user) => user.props.email === email
     )
 

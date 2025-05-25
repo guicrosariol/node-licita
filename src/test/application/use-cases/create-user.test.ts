@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from 'vitest'
-import { makeCreateUserUseCase } from '../factories/in-memory-make-create-user'
+import { makeCreateUserUseCase } from '../factories/make-create-user'
 import { User } from '../../../domain/entities/user'
 import { AlreadyExistError } from '../../../domain/application/use-cases/errors/already-exist-error'
 

@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from 'vitest'
-import { makeCreateCompanyUseCase } from '../factories/in-memory-make-create-company'
+import { makeCreateCompanyUseCase } from '../factories/make-create-company'
 import { Company } from '../../../domain/entities/company'
 import { AlreadyExistError } from '../../../domain/application/use-cases/errors/already-exist-error'
 

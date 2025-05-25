@@ -4,10 +4,10 @@ import type { Company } from "../../../domain/entities/company"
 
 
 export class InMemoryCompanyRepository implements CompanyRepository {
-  private items: Company[] = []
+  private companies: Company[] = []
 
   async findById(companyId: string): Promise<null | Company> {
-    const company = this.items.find((company) => company.id.toString() === companyId)
+    const company = this.companies.find((company) => company.id.toString() === companyId)
 
     if (!company) {
       return null
@@ -17,12 +17,12 @@ export class InMemoryCompanyRepository implements CompanyRepository {
   }
 
   async create(company: Company): Promise<Company> {
-    this.items.push(company)
+    this.companies.push(company)
     return company
   }
 
   async findByEmailOrCnpj(params: FindByEmailOrCnpjParams): Promise<Company | null> {
-    const company = this.items.find((company) => company.props.email == params.email || company.props.cnpj == params.cnpj)
+    const company = this.companies.find((company) => company.props.email == params.email || company.props.cnpj == params.cnpj)
 
     if (!company) {
       return null

@@ -4,15 +4,18 @@ import type { BidNote } from "../../../domain/entities/bid-note"
 
 
 export class InMemoryBidRepository implements BidRepository {
-  private items: Bid[] = []
+  private bids: Bid[] = []
+  private bidNotes: BidNote[] = []
+
 
   async create(bid: Bid): Promise<Bid> {
-    this.items.push(bid)
+    this.bids.push(bid)
+
     return bid
   };
 
   async findByPncpAndCompany(pncpId: string, companyId: string): Promise<null | Bid> {
-    const bid = this.items.find((bid) => bid.props.pncpId == pncpId && bid.props.companyId == companyId)
+    const bid = this.bids.find((bid) => bid.props.pncpId == pncpId && bid.props.companyId == companyId)
 
     if (!bid) {
       return null
@@ -21,18 +24,14 @@ export class InMemoryBidRepository implements BidRepository {
     return bid
   };
 
-  async findById(bidId: string): Promise<null | Bid> {
-    const bid = this.items.find((bid) => bid.props.id == bidId)
+  async findById(bidId: string): Promise<Bid | null> {
+    const bid = this.bids.find((bid) => bid.id.toValue() === bidId)
 
-    if (!bid) {
-      return null
-    }
-
-    return bid
-  };
+    return bid ?? null
+  }
 
   async markAsManaged(bidId: string): Promise<void> {
-    const bid = this.items.find((bid) => bid.props.id == bidId)
+    const bid = this.bids.find((bid) => bid.props.id == bidId)
 
     if (bid) {
       bid.markAsManaged()
@@ -40,12 +39,13 @@ export class InMemoryBidRepository implements BidRepository {
   };
 
   async checkIfManaged(bidId: string): Promise<boolean> {
-    return this.items.some(
+    return this.bids.some(
       (bid) => bid.props.id === bidId && bid.props.isManaged === true
     );
   }
 
-  createNote(bidNote: BidNote): Promise<BidNote> {
-    throw new Error("Method not implemented.");
+  async createNote(bidNote: BidNote): Promise<BidNote> {
+    this.bidNotes.push(bidNote)
+    return bidNote
   };
 }

@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest'
-import { makeCreateCompanyUseCase } from '../factories/in-memory-make-create-company'
-import { makeCreateBidUseCase } from '../factories/in-memory-make-create-bid'
+import { makeCreateCompanyUseCase } from '../factories/make-create-company'
+import { makeCreateBidUseCase } from '../factories/make-create-bid'
 import { Bid } from '../../../domain/entities/bid'
 import { AlreadyExistError } from '../../../domain/application/use-cases/errors/already-exist-error'
 import { NotFoundError } from '../../../domain/application/use-cases/errors/not-found-error'
@@ -65,7 +65,7 @@ describe('Create bid use case', () => {
     expect(result.value).toBeInstanceOf(AlreadyExistError)
   })
 
-  it('should not be able to create a bid with company dont exist', async () => {
+  it('should not be able to create a bid with a company that doesn’t exist', async () => {
     const result = await sut.execute({
       id: '1',
       companyId: '1',
