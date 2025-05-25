@@ -31,7 +31,7 @@ export class InMemoryBidRepository implements BidRepository {
   }
 
   async markAsManaged(bidId: string): Promise<void> {
-    const bid = this.bids.find((bid) => bid.props.id == bidId)
+    const bid = this.bids.find((bid) => bid.id.toValue() == bidId)
 
     if (bid) {
       bid.markAsManaged()
@@ -40,7 +40,7 @@ export class InMemoryBidRepository implements BidRepository {
 
   async checkIfManaged(bidId: string): Promise<boolean> {
     return this.bids.some(
-      (bid) => bid.props.id === bidId && bid.props.isManaged === true
+      (bid) => bid.id.toValue() === bidId && bid.props.isManaged === true
     );
   }
 

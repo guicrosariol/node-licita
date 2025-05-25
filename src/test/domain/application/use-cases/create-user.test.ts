@@ -3,8 +3,6 @@ import { makeCreateUserUseCase } from '../factories/make-create-user'
 import { User } from '../../../../domain/entities/user'
 import { AlreadyExistError } from '../../../../domain/application/use-cases/errors/already-exist-error'
 
-
-
 let sut: ReturnType<typeof makeCreateUserUseCase>
 
 describe('Create user user case', () => {

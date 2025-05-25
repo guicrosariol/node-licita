@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for test/domain/application/factories/make-create-bid.ts</title>
+    <title>Code coverage report for test/domain/application/factories/make-mark-bid-as-managed.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../../prettify.css" />
     <link rel="stylesheet" href="../../../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">test/domain/application/factories</a> make-create-bid.ts</h1>
+        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">test/domain/application/factories</a> make-mark-bid-as-managed.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -30,9 +30,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/3</span>
+                <span class='fraction'>1/3</span>
             </div>
         
             
@@ -84,9 +84,7 @@
 <a name='L19'></a><a href='#L19'>19</a>
 <a name='L20'></a><a href='#L20'>20</a>
 <a name='L21'></a><a href='#L21'>21</a>
-<a name='L22'></a><a href='#L22'>22</a>
-<a name='L23'></a><a href='#L23'>23</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L22'></a><a href='#L22'>22</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -98,35 +96,34 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span></td><td class="text"><pre class="prettyprint lang-js">&nbsp;
-import type { BidRepository } from '../../../../domain/application/repositories/bid-repository'
-import type { CompanyRepository } from '../../../../domain/application/repositories/company-repository'
-import { CreateBidUseCase } from '../../../../domain/application/use-cases/create-bid'
-import { InMemoryBidRepository } from '../repositories/in-memory-bid-repository'
-import { InMemoryCompanyRepository } from '../repositories/in-memory-company-repository'
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span></td><td class="text"><pre class="prettyprint lang-js">import type { BidRepository } from "../../../../domain/application/repositories/bid-repository"
+import type { CompanyRepository } from "../../../../domain/application/repositories/company-repository"
+import { MarkBidAsManagedUseCase } from "../../../../domain/application/use-cases/mark-bid-as-managed"
+import { InMemoryBidRepository } from "../repositories/in-memory-bid-repository"
+import { InMemoryCompanyRepository } from "../repositories/in-memory-company-repository"
 &nbsp;
 interface SharedRepositories {
   sharedCompanyRepository?: CompanyRepository
   sharedBidRepository?: BidRepository
 }
 &nbsp;
-export function makeCreateBidUseCase(sharedRepositories?: SharedRepositories) {
+export function makeMarkBidAsManaged(sharedRepositories?: SharedRepositories) {
   const sharedCompanyRepository = sharedRepositories?.sharedCompanyRepository
   const sharedBidRepository = sharedRepositories?.sharedBidRepository
 &nbsp;
   const companyRepository = <span class="branch-0 cbranch-no" title="branch not covered" >sharedCompanyRepository ?? new InMemoryCompanyRepository()</span>
-  const bidRepository = sharedBidRepository ?? new InMemoryBidRepository()
+  const bidRepository = <span class="branch-0 cbranch-no" title="branch not covered" >sharedBidRepository ?? new InMemoryBidRepository()</span>
 &nbsp;
-  const sut = new CreateBidUseCase(companyRepository, bidRepository)
+  const sut = new MarkBidAsManagedUseCase(companyRepository, bidRepository)
 &nbsp;
   return sut
 }</pre></td></tr></table></pre>
