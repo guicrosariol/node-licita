@@ -1,6 +1,7 @@
 import { Entity } from "../../core/entities/entity";
 
 export interface BidNoteProps {
+  id?: string,
   bidId: string
   companyId: string
   content: string

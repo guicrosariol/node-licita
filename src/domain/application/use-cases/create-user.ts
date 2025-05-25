@@ -5,6 +5,7 @@ import type { UserRepository } from "../repositories/user-repository";
 import { AlreadyExistError } from "./errors/already-exist-error";
 
 interface CreateUserRequest {
+  id?: string,
   name: string,
   email: string,
   password: string
@@ -19,6 +20,7 @@ export class CreateUserUseCase {
   ) { };
 
   async execute({
+    id,
     name,
     email,
     password
@@ -35,7 +37,7 @@ export class CreateUserUseCase {
       name,
       email,
       passwordHash
-    })
+    }, id)
 
     const createdUser = await this.userRepository.create(userToCreate)
 

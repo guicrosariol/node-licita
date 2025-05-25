@@ -4,6 +4,7 @@ import { Bid } from '../domain/entities/bid'
 import { AlreadyExistError } from '../domain/application/use-cases/errors/already-exist-error'
 import { makeCreateCompanyUseCase } from './factories/make-create-company'
 import { InMemoryCompanyRepository } from './repositories/in-memory-company-repository'
+import { NotFoundError } from '../domain/application/use-cases/errors/not-found-error'
 
 let sut: ReturnType<typeof makeCreateBidUseCase>
 let createCompanyUseCase: ReturnType<typeof makeCreateCompanyUseCase>
@@ -57,5 +58,16 @@ describe('Create bid use case', () => {
 
     expect(result.isLeft()).toBe(true)
     expect(result.value).toBeInstanceOf(AlreadyExistError)
+  })
+
+  it('should not be able to create a bid with company dont exist', async () => {
+    const result = await sut.execute({
+      id: '1',
+      companyId: '1',
+      pncpId: '1'
+    })
+
+    expect(result.isLeft()).toBe(true)
+    expect(result.value).toBeInstanceOf(NotFoundError)
   })
 })
