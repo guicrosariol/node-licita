@@ -1,5 +1,6 @@
-import type { CompanyRepository } from '../../../domain/application/repositories/company-repository'
-import { CreateCompanyUseCase } from '../../../domain/application/use-cases/create-company'
+
+import type { CompanyRepository } from '../../../../domain/application/repositories/company-repository'
+import { CreateCompanyUseCase } from '../../../../domain/application/use-cases/create-company'
 import { InMemoryCompanyRepository } from '../repositories/in-memory-company-repository'
 
 interface SharedRepositories {

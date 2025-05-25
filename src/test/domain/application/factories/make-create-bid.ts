@@ -1,6 +1,7 @@
-import type { BidRepository } from '../../../domain/application/repositories/bid-repository'
-import type { CompanyRepository } from '../../../domain/application/repositories/company-repository'
-import { CreateBidUseCase } from '../../../domain/application/use-cases/create-bid'
+
+import type { BidRepository } from '../../../../domain/application/repositories/bid-repository'
+import type { CompanyRepository } from '../../../../domain/application/repositories/company-repository'
+import { CreateBidUseCase } from '../../../../domain/application/use-cases/create-bid'
 import { InMemoryBidRepository } from '../repositories/in-memory-bid-repository'
 import { InMemoryCompanyRepository } from '../repositories/in-memory-company-repository'
 

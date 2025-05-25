@@ -1,10 +1,10 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import { makeCreateCompanyUseCase } from '../factories/make-create-company'
 import { makeCreateBidUseCase } from '../factories/make-create-bid'
-import { Bid } from '../../../domain/entities/bid'
-import { AlreadyExistError } from '../../../domain/application/use-cases/errors/already-exist-error'
-import { NotFoundError } from '../../../domain/application/use-cases/errors/not-found-error'
 import { InMemoryCompanyRepository } from '../repositories/in-memory-company-repository'
+import { Bid } from '../../../../domain/entities/bid'
+import { AlreadyExistError } from '../../../../domain/application/use-cases/errors/already-exist-error'
+import { NotFoundError } from '../../../../domain/application/use-cases/errors/not-found-error'
 
 
 let sut: ReturnType<typeof makeCreateBidUseCase>

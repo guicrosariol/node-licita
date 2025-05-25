@@ -1,11 +1,13 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import { MakeCreateBidNoteUseCase } from '../factories/make-create-bid-note'
-import { BidNote } from '../../../domain/entities/bid-note'
+
 import { makeCreateBidUseCase } from '../factories/make-create-bid'
 import { makeCreateCompanyUseCase } from '../factories/make-create-company'
 import { InMemoryCompanyRepository } from '../repositories/in-memory-company-repository'
 import { InMemoryBidRepository } from '../repositories/in-memory-bid-repository'
-import { NotFoundError } from '../../../domain/application/use-cases/errors/not-found-error'
+import { BidNote } from '../../../../domain/entities/bid-note'
+import { NotFoundError } from '../../../../domain/application/use-cases/errors/not-found-error'
+
 
 let sut: ReturnType<typeof MakeCreateBidNoteUseCase>
 let createBidUseCase: ReturnType<typeof makeCreateBidUseCase>
