@@ -1,6 +1,7 @@
-import type { BidRepository } from "../../domain/application/repositories/bid-repository";
-import type { Bid } from "../../domain/entities/bid";
-import type { BidNote } from "../../domain/entities/bid-note";
+import type { BidRepository } from "../../../domain/application/repositories/bid-repository"
+import type { Bid } from "../../../domain/entities/bid"
+import type { BidNote } from "../../../domain/entities/bid-note"
+
 
 export class InMemoryBidRepository implements BidRepository {
   private items: Bid[] = []

@@ -1,6 +1,7 @@
-import type { CompanyRepository } from "../../domain/application/repositories/company-repository";
-import type { FindByEmailOrCnpjParams } from "../../domain/application/repositories/types/company";
-import type { Company } from "../../domain/entities/company";
+import type { CompanyRepository } from "../../../domain/application/repositories/company-repository"
+import type { FindByEmailOrCnpjParams } from "../../../domain/application/repositories/types/company"
+import type { Company } from "../../../domain/entities/company"
+
 
 export class InMemoryCompanyRepository implements CompanyRepository {
   private items: Company[] = []

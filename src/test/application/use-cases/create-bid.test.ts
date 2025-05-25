@@ -1,10 +1,11 @@
 import { beforeEach, describe, expect, it } from 'vitest'
-import { makeCreateBidUseCase } from './factories/make-create-bid'
-import { Bid } from '../domain/entities/bid'
-import { AlreadyExistError } from '../domain/application/use-cases/errors/already-exist-error'
-import { makeCreateCompanyUseCase } from './factories/make-create-company'
-import { InMemoryCompanyRepository } from './repositories/in-memory-company-repository'
-import { NotFoundError } from '../domain/application/use-cases/errors/not-found-error'
+import { makeCreateCompanyUseCase } from '../factories/in-memory-make-create-company'
+import { makeCreateBidUseCase } from '../factories/in-memory-make-create-bid'
+import { Bid } from '../../../domain/entities/bid'
+import { AlreadyExistError } from '../../../domain/application/use-cases/errors/already-exist-error'
+import { NotFoundError } from '../../../domain/application/use-cases/errors/not-found-error'
+import { InMemoryCompanyRepository } from '../repositories/in-memory-company-repository'
+
 
 let sut: ReturnType<typeof makeCreateBidUseCase>
 let createCompanyUseCase: ReturnType<typeof makeCreateCompanyUseCase>
@@ -14,8 +15,12 @@ describe('Create bid use case', () => {
   beforeEach(() => {
     sharedCompanyRepository = new InMemoryCompanyRepository()
 
-    sut = makeCreateBidUseCase(sharedCompanyRepository)
-    createCompanyUseCase = makeCreateCompanyUseCase(sharedCompanyRepository)
+    sut = makeCreateBidUseCase({
+      sharedCompanyRepository
+    })
+    createCompanyUseCase = makeCreateCompanyUseCase({
+      sharedCompanyRepository
+    })
   })
 
   it('should be able to create a new bid', async () => {
