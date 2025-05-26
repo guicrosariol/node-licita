@@ -1,4 +1,3 @@
-
 import type { BidRepository } from "../../../../domain/application/repositories/bid-repository";
 import type { CompanyRepository } from "../../../../domain/application/repositories/company-repository";
 import { CreateBidNoteUseCase } from "../../../../domain/application/use-cases/create-bid-note";

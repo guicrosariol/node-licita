@@ -2,7 +2,6 @@ import type { BidRepository } from "../../../../domain/application/repositories/
 import type { Bid } from "../../../../domain/entities/bid"
 import type { BidNote } from "../../../../domain/entities/bid-note"
 
-
 export class InMemoryBidRepository implements BidRepository {
   private bids: Bid[] = []
   private bidNotes: BidNote[] = []

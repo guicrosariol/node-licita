@@ -35,6 +35,7 @@ describe('Create bid use case', () => {
 
   it('should be able to create a new bid note', async () => {
     await createCompanyUseCase.execute({
+      ownerId: '1',
       id: '1',
       name: 'example',
       email: 'example@example.com',
@@ -76,6 +77,7 @@ describe('Create bid use case', () => {
 
   it('should not be able to create a bid note with a bid that doesn’t exist', async () => {
     await createCompanyUseCase.execute({
+      ownerId: '1',
       id: '1',
       cnpj: '1',
       email: 'example@example.com',

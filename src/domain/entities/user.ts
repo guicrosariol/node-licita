@@ -1,10 +1,10 @@
 import { Entity } from "../../core/entities/entity";
 
 export interface UserProps {
-  id?: string,
-  name: string;
-  email: string;
-  passwordHash: string;
+  id?: string
+  name: string
+  email: string
+  passwordHash: string
 }
 
 export class User extends Entity<UserProps> {

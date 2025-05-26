@@ -25,12 +25,13 @@ export class CreateBidUseCase {
     pncpId
   }: CreateBidRequest): Promise<CreateBidResponse> {
     const doesCompanyExist = await this.companyRepository.findById(companyId)
-    
+
     if (!doesCompanyExist) {
       return left(new NotFoundError())
     }
 
     const bidAlreadyExist = await this.bidRepository.findByPncpAndCompany(pncpId, companyId)
+    
     if (bidAlreadyExist) {
       return left(new AlreadyExistError())
     }

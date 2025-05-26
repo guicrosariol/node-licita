@@ -4,7 +4,6 @@ import { makeCreateBidUseCase } from '../factories/make-create-bid'
 import { InMemoryBidRepository } from '../repositories/in-memory-bid-repository'
 import { InMemoryCompanyRepository } from '../repositories/in-memory-company-repository'
 import { makeCreateCompanyUseCase } from '../factories/make-create-company'
-import { ForbiddenError } from '../../../../domain/application/use-cases/errors/forbidden-error'
 import { ActionAlreadyPerformedError } from '../../../../domain/application/use-cases/errors/action-already-performed-error'
 
 let sut: ReturnType<typeof makeMarkBidAsManaged>
@@ -35,6 +34,7 @@ describe('Mark bid as managed use case', () => {
 
   it('should be able to mark bid as managed', async () => {
     await createCompanyUseCase.execute({
+      ownerId: '1',
       id: '1',
       cnpj: '1',
       email: 'example@example.com',
@@ -57,6 +57,7 @@ describe('Mark bid as managed use case', () => {
 
   it('should not allow marking bid as managed if company does not own the bid', async () => {
     await createCompanyUseCase.execute({
+      ownerId: '1',
       id: 'company-1',
       cnpj: '1',
       email: 'example1@example.com',
@@ -64,6 +65,7 @@ describe('Mark bid as managed use case', () => {
     })
 
     await createCompanyUseCase.execute({
+      ownerId: '1',
       id: 'company-2',
       cnpj: '2',
       email: 'example2@example.com',
@@ -86,6 +88,7 @@ describe('Mark bid as managed use case', () => {
 
   it('should not allow marking bid as managed if it is already marked', async () => {
     await createCompanyUseCase.execute({
+      ownerId: '1',
       id: 'company-1',
       cnpj: '2',
       email: 'example2@example.com',

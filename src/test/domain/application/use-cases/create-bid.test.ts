@@ -25,6 +25,7 @@ describe('Create bid use case', () => {
 
   it('should be able to create a new bid', async () => {
     await createCompanyUseCase.execute({
+      ownerId: '1',
       id: '1',
       name: 'example',
       cnpj: '1',
@@ -43,6 +44,7 @@ describe('Create bid use case', () => {
 
   it('should not be able to create a bid with same pncpId and companyId', async () => {
     await createCompanyUseCase.execute({
+      ownerId: '1',
       id: '1',
       name: 'example',
       cnpj: '1',
