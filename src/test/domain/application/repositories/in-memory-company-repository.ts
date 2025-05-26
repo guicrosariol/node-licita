@@ -1,5 +1,4 @@
 import type { CompanyRepository } from "../../../../domain/application/repositories/company-repository"
-import type { FindByEmailOrCnpjParams } from "../../../../domain/application/repositories/types/company"
 import type { Company } from "../../../../domain/entities/company"
 
 export class InMemoryCompanyRepository implements CompanyRepository {
@@ -20,8 +19,8 @@ export class InMemoryCompanyRepository implements CompanyRepository {
     return company
   }
 
-  async findByEmailOrCnpj(params: FindByEmailOrCnpjParams): Promise<Company | null> {
-    const company = this.companies.find((company) => company.props.email == params.email || company.props.cnpj == params.cnpj)
+  async findByEmailOrCnpj(email: string, cnpj: string): Promise<Company | null> {
+    const company = this.companies.find((company) => company.props.email == email || company.props.cnpj == cnpj)
 
     if (!company) {
       return null

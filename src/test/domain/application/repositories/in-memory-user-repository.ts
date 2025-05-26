@@ -2,6 +2,15 @@ import type { UserRepository } from "../../../../domain/application/repositories
 import type { User } from "../../../../domain/entities/user"
 
 export class InMemoryUserRepository implements UserRepository {
+  findById(userId: string): Promise<null | User> {
+    throw new Error("Method not implemented.")
+  }
+  assignToCompany(userId: string, companyId: string): Promise<void> {
+    throw new Error("Method not implemented.")
+  }
+  isAlreadyAssignedToCompany(userId: string, companyId: string): Promise<boolean> {
+    throw new Error("Method not implemented.")
+  }
   public users: User[] = []
 
   async create(user: User): Promise<User> {

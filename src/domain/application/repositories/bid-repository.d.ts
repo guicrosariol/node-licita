@@ -1,5 +1,6 @@
 import type { Bid } from "../../entities/bid";
 import type { BidNote, BidNoteProps } from "../../entities/bid-note";
+import type { findByPncpAndCompanyParams } from "./types/bid";
 
 export interface BidRepository {
   create(bid: Bid): Promise<Bid>
