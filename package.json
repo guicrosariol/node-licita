@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "dev": "tsx watch src/infra/http/server.ts",
     "test": "vitest",
     "coverage": "vitest run --coverage"
   },
@@ -13,9 +14,16 @@
   "devDependencies": {
     "@types/node": "^22.15.21",
     "@vitest/coverage-v8": "^3.1.4",
+    "prisma": "^6.8.2",
     "tsup": "^8.5.0",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3",
     "vitest": "^3.1.4"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.8.2",
+    "dotenv": "^16.5.0",
+    "fastify": "^5.3.3",
+    "zod": "^3.25.30"
   }
 }
