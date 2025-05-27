@@ -1,7 +1,6 @@
 import { Entity } from "../../core/entities/entity";
 
-interface BidProps {
-  id?: string
+export interface BidProps {
   companyId: string,
   pncpId: string
   isManaged?: boolean

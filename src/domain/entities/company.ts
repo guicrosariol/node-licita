@@ -1,7 +1,6 @@
 import { Entity } from "../../core/entities/entity";
 
 export interface CompanyProps {
-  id?: string;
   name: string;
   ownerId: string;
   maximumUsers: number;

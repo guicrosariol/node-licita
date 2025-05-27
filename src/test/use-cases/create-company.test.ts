@@ -1,16 +1,29 @@
 import { beforeEach, describe, expect, it } from 'vitest'
-import { makeCreateCompanyUseCase } from '../factories/make-create-company'
-import { Company } from '../../../../domain/entities/company'
-import { AlreadyExistError } from '../../../../domain/application/use-cases/errors/already-exist-error'
+import { InMemoryUserRepository } from '../repositories/in-memory-user-repository'
+import { CreateCompanyUseCase } from '../../domain/application/use-cases/create-company'
+import type { CompanyRepository } from '../../domain/application/repositories/company-repository'
+import type { UserRepository } from '../../domain/application/repositories/user-repository'
+import { InMemoryCompanyRepository } from '../repositories/in-memory-company-repository'
+import { makeUser } from '../factories/make-user'
+import { Company } from '../../domain/entities/company'
+import { AlreadyExistError } from '../../domain/application/use-cases/errors/already-exist-error'
 
-let sut: ReturnType<typeof makeCreateCompanyUseCase>
+let sut: CreateCompanyUseCase
+let companyRepository: CompanyRepository
+let userRepository: UserRepository
 
 describe('Create company use case', () => {
   beforeEach(() => {
-    sut = makeCreateCompanyUseCase()
+    companyRepository = new InMemoryCompanyRepository()
+    userRepository = new InMemoryUserRepository()
+
+    sut = new CreateCompanyUseCase(companyRepository, userRepository)
   })
 
   it('should be able to create a new company', async () => {
+    const user = makeUser({}, '1')
+    await userRepository.create(user)
+
     const result = await sut.execute({
       ownerId: '1',
       name: 'example',
@@ -23,6 +36,8 @@ describe('Create company use case', () => {
   })
 
   it('should not be able to create a company with same cnpj or email', async () => {
+    const user = makeUser({}, '1')
+    await userRepository.create(user)
 
     await sut.execute({
       ownerId: '1',
