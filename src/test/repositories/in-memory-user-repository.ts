@@ -15,9 +15,9 @@ export class InMemoryUserRepository implements UserRepository {
 
     return user
   }
-  async assignToCompany(userCompany: UserCompany): Promise<void> {
+  async assignToCompany(userCompany: UserCompany): Promise<UserCompany> {
     this.user_company.push(userCompany)
-    return
+    return userCompany
   }
   async isAlreadyAssignedToCompany(userId: string, companyId: string): Promise<boolean> {
     const isAssigned = this.user_company.some((userCompany) => userCompany.props.userId === userId && userCompany.props.companyId === companyId)

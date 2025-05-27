@@ -7,6 +7,6 @@ export interface UserRepository {
   create(user: User): Promise<User>
   findById(userId: string): Promise<null | User>
   findByEmail(email: string): Promise<User | null>
-  assignToCompany(userCompany: UserCompany): Promise<void>
+  assignToCompany(userCompany: UserCompany): Promise<UserCompany>
   isAlreadyAssignedToCompany(userId: string, companyId: string): Promise<boolean>
 }
