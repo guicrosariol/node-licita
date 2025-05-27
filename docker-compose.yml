@@ -1,9 +1,0 @@
-services: 
-  licita:
-    image: bitnami/postgresql
-    ports:
-     - 5432:5432
-    environment:
-    - POSTGRESQL_USERNAME=licita
-    - POSTGRESQL_PASSWORD=licita
-    - POSTGRESQL_DATABASE=licita

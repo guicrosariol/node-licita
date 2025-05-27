@@ -13,7 +13,7 @@ interface CreateCompanyRequest {
   cnpj: string
 }
 
-type CreateCompanyResponse = Either<AlreadyExistError, Company>
+type CreateCompanyResponse = Either<AlreadyExistError | NotFoundError, Company>
 
 export class CreateCompanyUseCase {
   constructor(
