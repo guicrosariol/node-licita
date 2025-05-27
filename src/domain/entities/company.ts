@@ -1,26 +1,21 @@
-import { UUID } from "../../core/uuid";
+import { Entity } from "../../core/entities/entity";
 
 export interface CompanyProps {
   name: string;
+  ownerId: string;
+  maximumUsers: number;
+  currentUsers: number;
   cnpj: string;
   email: string;
 }
 
-export class Company {
-  private id: string;
-  private name: string;
-  private cnpj: string;
-  private email: string;
+export class Company extends Entity<CompanyProps> {
+  get canAddUser(): boolean {
+    return (this.props.currentUsers ?? 0) < (this.props.maximumUsers ?? 1);
+  }
 
-  private constructor(props: CompanyProps) {
-    this.id = UUID.create();
-    this.name = props.name;
-    this.cnpj = props.cnpj;
-    this.email = props.email;
-  };
-
-  static create(props: CompanyProps) {
-    return new Company(props);
+  static create(props: CompanyProps, id?: string,) {
+    return new Company(props, id);
   };
 }
 
