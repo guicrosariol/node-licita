@@ -1,16 +1,49 @@
 import type { UserRepository } from "../../../domain/application/repositories/user-repository";
-import type { User } from "../../../domain/entities/user";
+import { User } from "../../../domain/entities/user";
 import type { UserCompany } from "../../../domain/entities/user-company";
+import { prisma } from "../prisma";
 
 export class PrismaUserRepository implements UserRepository {
-  create(user: User): Promise<User> {
-    throw new Error("Method not implemented.");
+  async create(user: User): Promise<User> {
+    const createdUser = await prisma.user.create({
+      data: {
+        name: user.props.name,
+        email: user.props.email,
+        password_hash: user.props.passwordHash
+      }
+    })
+
+    return User.create({
+      name: createdUser.name,
+      email: createdUser.email,
+      passwordHash: createdUser.password_hash,
+    }, createdUser.id)
   }
-  findById(userId: string): Promise<null | User> {
-    throw new Error("Method not implemented.");
+  async findById(userId: string): Promise<null | User> {
+    const user = await prisma.user.findUnique({
+      where: {
+        id: userId
+      }
+    })
+
+    return user ? User.create({
+      name: user?.name,
+      email: user?.email,
+      passwordHash: user?.password_hash
+    }) : null
   }
-  findByEmail(email: string): Promise<User | null> {
-    throw new Error("Method not implemented.");
+  async findByEmail(email: string): Promise<User | null> {
+    const user = await prisma.user.findUnique({
+      where: {
+        email,
+      }
+    })
+
+    return user ? User.create({
+      name: user?.name,
+      email: user?.email,
+      passwordHash: user?.password_hash
+    }) : null
   }
   assignToCompany(userCompany: UserCompany): Promise<UserCompany> {
     throw new Error("Method not implemented.");
