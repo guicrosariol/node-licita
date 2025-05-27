@@ -10,8 +10,9 @@ datasource db {
 model User {
   id String @id @default(uuid())
 
-  name  String
-  email String
+  name          String
+  email         String @unique
+  password_hash String
 
   Company     Company[]
   userCompany userCompany[]
@@ -35,6 +36,8 @@ model Company {
   userCompany userCompany[]
   Bid         Bid[]
   BidNote     BidNote[]
+
+  @@map("companies")
 }
 
 model userCompany {
@@ -45,6 +48,8 @@ model userCompany {
 
   user    User    @relation(fields: [userId], references: [id])
   company Company @relation(fields: [companyId], references: [id])
+
+  @@map("user_companies")
 }
 
 model Bid {
@@ -56,6 +61,8 @@ model Bid {
   company Company @relation(fields: [companyId], references: [id])
 
   BidNote BidNote[]
+
+  @@map("bids")
 }
 
 model BidNote {
@@ -68,4 +75,6 @@ model BidNote {
   bid     Bid     @relation(fields: [bidId], references: [id])
   company Company @relation(fields: [companyId], references: [id])
   user    User    @relation(fields: [ownerId], references: [id])
+
+  @@map("bid_notes")
 }
