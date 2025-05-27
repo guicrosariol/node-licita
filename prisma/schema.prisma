@@ -1,0 +1,71 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id String @id @default(uuid())
+
+  name  String
+  email String
+
+  Company     Company[]
+  userCompany userCompany[]
+  BidNote     BidNote[]
+
+  @@map("users")
+}
+
+model Company {
+  id String @id @default(uuid())
+
+  ownerId      String
+  name         String
+  email        String
+  maximumUsers Decimal
+  currentUsers Decimal
+  cnpj         String
+
+  user User @relation(fields: [ownerId], references: [id])
+
+  userCompany userCompany[]
+  Bid         Bid[]
+  BidNote     BidNote[]
+}
+
+model userCompany {
+  id Int @id @default(autoincrement())
+
+  userId    String
+  companyId String
+
+  user    User    @relation(fields: [userId], references: [id])
+  company Company @relation(fields: [companyId], references: [id])
+}
+
+model Bid {
+  id        Int     @id @default(autoincrement())
+  companyId String
+  pncpId    String
+  isManaged Boolean @default(false)
+
+  company Company @relation(fields: [companyId], references: [id])
+
+  BidNote BidNote[]
+}
+
+model BidNote {
+  id        Int    @id @default(autoincrement())
+  bidId     Int
+  ownerId   String
+  companyId String
+  content   String
+
+  bid     Bid     @relation(fields: [bidId], references: [id])
+  company Company @relation(fields: [companyId], references: [id])
+  user    User    @relation(fields: [ownerId], references: [id])
+}
