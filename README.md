@@ -1,11 +1,10 @@
 # Licita Backend
 
-Serviço backend da aplicação Licita, construído com base em princípios de Clean Architecture e Domain-Driven Design (DDD).
+Backend service for the Licita application, built with a clean architecture approach and domain-driven design principles.
 
-## Estrutura do Projeto
+## Project Structure
 
-O projeto segue o padrão de Clean Architecture com os seguintes diretórios principais:
-
+The project follows a clean architecture pattern with the following main directories:
 
 ```
 src/
@@ -25,33 +24,33 @@ test/
 └── use-cases/     # Use case tests
 ```
 
-## Arquitetura
+## Architecture
 
-Este projeto segue os princípios da Clean Architecture, organizando o código nas seguintes camadas:
+This project follows Clean Architecture principles with the following layers:
 
-- **Camada de Domínio**: Contém a lógica de negócio, entidades e casos de uso
-- **Camada Core**: Contém interfaces compartilhadas, entidades base e utilitários
-- **Camada de Testes**: Suíte de testes abrangente seguindo a mesma estrutura do código-fonte
+- **Domain Layer**: Contains the business logic, entities, and use cases
+- **Core Layer**: Contains shared interfaces, base entities, and utilities
+- **Test Layer**: Comprehensive test suite following the same structure as the source code
 
-## Desenvolvimento
+## Development
 
-### Pré-requisitos
+### Prerequisites
 
-- Node.js (versão especificada no `package.json`)
-- npm ou yarn
+- Node.js (version specified in package.json)
+- npm or yarn
 
-### Instalação
+### Setup
 
-1. Clone o repositório
-2. Instale as dependências:
+1. Clone the repository
+2. Install dependencies:
    
 ```bash
 npm install
-# ou
+# or
 yarn install
-```
+ ```
 
-### Rodar Testes
+### Running Tests
 
 ```bash
 npm test
